@@ -1,5 +1,7 @@
 package br.com.dio.picpayclone.service;
 
+import java.util.List;
+
 import br.com.dio.picpayclone.dto.UsuarioDTO;
 import br.com.dio.picpayclone.modelo.Transacao;
 import br.com.dio.picpayclone.modelo.Usuario;
@@ -13,5 +15,7 @@ public interface IUsuarioService {
 	void atualizarSaldo(Transacao transacaoSalva);
 
 	void validar(Usuario... usuarios);
+
+	List<UsuarioDTO> listar(String login);
 
 }

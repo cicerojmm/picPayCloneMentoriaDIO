@@ -36,13 +36,5 @@ public class RestControllerAdviceException {
 		return dto;
 	}
 
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public List<ErrorDTO> handle(NegocioException exception) {
-		List<ErrorDTO> dto = new ArrayList<>();
-		ErrorDTO erro = new ErrorDTO(exception.getLocalizedMessage(), exception.getMessage());
-		dto.add(erro);
-		return dto;
-	}
 
 }

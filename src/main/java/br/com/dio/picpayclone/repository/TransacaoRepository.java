@@ -8,7 +8,7 @@ import br.com.dio.picpayclone.modelo.Transacao;
 
 public interface TransacaoRepository extends JpaRepository<Transacao, Long>{
 
-	Page<Transacao> findByLogin(String login, Pageable paginacao);
+	Page<Transacao> findByOrigem_LoginOrDestino_Login(String loginOrigem, String loginDestino, Pageable paginacao);
 
 	
 }

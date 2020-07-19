@@ -5,13 +5,11 @@ import java.time.LocalDateTime;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import br.com.diopicpayclone.enums.TipoTransacao;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,7 +32,7 @@ public class Transacao extends EntidadeBase {
 	@JoinColumn(name = "TR_USUARIO_ORIGEM", nullable = false)
 	private Usuario origem;
 
-	@ManyToOne(cascade = { CascadeType.MERGE })
+	@ManyToOne(cascade = { CascadeType.MERGE }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "TR_USUARIO_DESTINO", nullable = false)
 	private Usuario destino;
 
@@ -43,9 +41,5 @@ public class Transacao extends EntidadeBase {
 
 	@Column(name = "TR_VALOR", nullable = false)
 	private Double valor;
-
-	@Enumerated(EnumType.STRING)
-	@Column(name = "TR_TIPO_TRANSACAO", nullable = false)
-	private TipoTransacao tipoTransacao;
 
 }

@@ -1,7 +1,5 @@
 package br.com.dio.picpayclone.repository;
 
-import javax.transaction.Transactional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,12 +12,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	@Modifying
 	@Query("update Usuario u set u.saldo = u.saldo - ?2 where u.login = ?1")
-	@Transactional
 	void updateDecrementarSaldo(String login, Double valor);
-	
+
 	@Modifying
 	@Query("update Usuario u set u.saldo = u.saldo + ?2 where u.login = ?1")
-	@Transactional
 	void updateIncrementarSaldo(String login, Double valor);
 
 }

@@ -37,7 +37,7 @@ public class Usuario extends EntidadeBase {
 	@Column(name = "USU_NOME_COMPLETO", nullable = false)
 	private String nomeCompleto;
 
-	@Column(name = "CPF", nullable = false)
+	@Column(name = "USU_CPF", nullable = false)
 	private String cpf;
 
 	@Column(name = "USU_DATA_NASCIMENTO", nullable = false)
@@ -51,5 +51,8 @@ public class Usuario extends EntidadeBase {
 	
 	@Column(name = "USU_SALDO", nullable = false)
 	private Double saldo;
+	
+	@Column(name = "USU_ATIVO", nullable = false)
+	private Boolean ativo;
 
 }

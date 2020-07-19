@@ -7,10 +7,11 @@ spring:
       url: jdbc:postgresql://localhost:54327/picpay_clone
       username: postgres
       password: Postgres2019!
+      initialization-mode: always
 # JPA properties
    jpa:
       hibernate:
-         ddl-auto: none
+         ddl-auto: update
       show-sql: true
       database: postgresql
       database-platform: org.hibernate.dialect.PostgreSQLDialect

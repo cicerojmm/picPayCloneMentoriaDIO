@@ -1,12 +1,12 @@
 package br.com.diopicpayclone.enums;
 
-public enum TipoTransacao {
+public enum BandeiraCartao {
 
-	DEBITO("Débito"), CREDITO("Crédito");
+	VISA("Visa"), MASTERCARD("Master Card"), ELO("Elo");
 
 	private String descricao;
 
-	TipoTransacao(String descricao) {
+	BandeiraCartao(String descricao) {
 		this.descricao = descricao;
 	}
 

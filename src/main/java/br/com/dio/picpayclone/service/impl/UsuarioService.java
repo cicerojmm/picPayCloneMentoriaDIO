@@ -1,10 +1,13 @@
 package br.com.dio.picpayclone.service.impl;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.dio.picpayclone.constantes.MensagemValidacao;
 import br.com.dio.picpayclone.conversor.UsuarioConversor;
@@ -31,14 +34,16 @@ public class UsuarioService implements IUsuarioService {
 	}
 
 	@Override
+	@Transactional
 	public Usuario consultar(String login) {
 		return usuarioRepository.findByLogin(login);
 	}
 
 	@Override
 	@Async("asyncExecutor")
+	@Transactional
 	public void atualizarSaldo(Transacao transacaoSalva) {
-		usuarioRepository.updateDecrementarSaldo(transacaoSalva.getDestino().getLogin(), transacaoSalva.getValor());
+		usuarioRepository.updateDecrementarSaldo(transacaoSalva.getOrigem().getLogin(), transacaoSalva.getValor());
 		usuarioRepository.updateIncrementarSaldo(transacaoSalva.getDestino().getLogin(), transacaoSalva.getValor());
 	}
 
@@ -46,11 +51,18 @@ public class UsuarioService implements IUsuarioService {
 	public void validar(Usuario... usuarios) {
 
 		Arrays.asList(usuarios).stream().forEach(usuario -> {
-			if (usuario != null) {
+			if (usuario == null) {
 				throw new NegocioException(MensagemValidacao.ERRO_USUARIO_INEXISTENTE);
 			}
 
 		});
+	}
+
+	@Override
+	public List<UsuarioDTO> listar(String login) {
+		List<Usuario> usuarios = usuarioRepository.findAll();
+		return usuarioConversor.converterEntidadesParaDtos(
+				usuarios.stream().filter(v -> !v.getLogin().equals(login)).collect(Collectors.toList()));
 	}
 
 }

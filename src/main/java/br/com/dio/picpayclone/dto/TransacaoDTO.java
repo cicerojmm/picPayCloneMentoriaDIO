@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import br.com.diopicpayclone.enums.TipoTransacao;
 import lombok.Data;
 
 @Data
@@ -32,8 +31,5 @@ public class TransacaoDTO {
 
 	@NotNull
 	private CartaoCreditoDTO cartaoCredito;
-
-	@NotBlank
-	private TipoTransacao tipoTransacao;
 
 }
