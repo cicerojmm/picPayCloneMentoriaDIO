@@ -25,7 +25,7 @@ public class CartaoCreditoDTO {
 	@NotBlank
 	private String nomeTitular;
 	
-	private String numeroCartao;
+	private String numero;
 
 	private String numeroToken;
 

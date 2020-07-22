@@ -29,7 +29,8 @@ public class TransacaoDTO {
 	@NotNull
 	private Double valor;
 
-	@NotNull
 	private CartaoCreditoDTO cartaoCredito;
+	
+	private Boolean isCartaoCredito = false;
 
 }

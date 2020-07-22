@@ -28,23 +28,33 @@ public class UsuarioService implements IUsuarioService {
 	private UsuarioConversor usuarioConversor;
 
 	@Override
-	public UsuarioDTO consultarSaldo(String login) {
-		Usuario usuario = consultar(login);
+	public UsuarioDTO consultar(String login) {
+		Usuario usuario = consultarEntidade(login);
 		return usuarioConversor.converterEntidadeParaDto(usuario);
 	}
 
 	@Override
 	@Transactional
-	public Usuario consultar(String login) {
+	public Usuario consultarEntidade(String login) {
 		return usuarioRepository.findByLogin(login);
 	}
 
 	@Override
 	@Async("asyncExecutor")
 	@Transactional
-	public void atualizarSaldo(Transacao transacaoSalva) {
-		usuarioRepository.updateDecrementarSaldo(transacaoSalva.getOrigem().getLogin(), transacaoSalva.getValor());
+	public void atualizarSaldo(Transacao transacaoSalva, Boolean isCartaoCredito) {
+		decrementarSaldo(transacaoSalva, isCartaoCredito);
+		incrementarSaldo(transacaoSalva);
+	}
+
+	private void incrementarSaldo(Transacao transacaoSalva) {
 		usuarioRepository.updateIncrementarSaldo(transacaoSalva.getDestino().getLogin(), transacaoSalva.getValor());
+	}
+
+	private void decrementarSaldo(Transacao transacaoSalva, Boolean isCartaoCredito) {
+		if (!isCartaoCredito) {
+			usuarioRepository.updateDecrementarSaldo(transacaoSalva.getOrigem().getLogin(), transacaoSalva.getValor());
+		}
 	}
 
 	@Override

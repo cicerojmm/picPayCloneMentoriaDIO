@@ -8,11 +8,11 @@ import br.com.dio.picpayclone.modelo.Usuario;
 
 public interface IUsuarioService {
 
-	Usuario consultar(String login);
+	Usuario consultarEntidade(String login);
 	
-	UsuarioDTO consultarSaldo(String login);
+	UsuarioDTO consultar(String login);
 
-	void atualizarSaldo(Transacao transacaoSalva);
+	void atualizarSaldo(Transacao transacaoSalva, Boolean isCartaoCredito);
 
 	void validar(Usuario... usuarios);
 

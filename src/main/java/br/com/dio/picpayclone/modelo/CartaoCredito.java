@@ -3,10 +3,13 @@ package br.com.dio.picpayclone.modelo;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.com.diopicpayclone.enums.BandeiraCartao;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,8 +28,9 @@ public class CartaoCredito extends EntidadeBase {
 	@Column(name = "CC_NUMERO", nullable = false)
 	private String numero;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "CC_BANDEIRA", nullable = false)
-	private String bandeira;
+	private BandeiraCartao bandeira;
 
 	@Column(name = "CC_TOKEN")
 	private String numeroToken;

@@ -32,14 +32,12 @@ public class TransacaoService implements ITransacaoService {
 	public TransacaoDTO processar(TransacaoDTO transacaoDTO) {
 		Transacao transacaoSalva = salvar(transacaoDTO);
 		cartaoCreditoService.salvar(transacaoDTO.getCartaoCredito());
-		usuarioService.atualizarSaldo(transacaoSalva);
+		usuarioService.atualizarSaldo(transacaoSalva, transacaoDTO.getIsCartaoCredito());
 		return transacaoConversor.converterEntidadeParaDto(transacaoSalva);
 	}
 
 	private Transacao salvar(TransacaoDTO transacaoDTO) {
 		Transacao transacao = transacaoConversor.converterDtoParaEntidade(transacaoDTO);
-		transacao.setOrigem(usuarioService.consultar(transacaoDTO.getOrigem().getLogin()));
-		transacao.setDestino(usuarioService.consultar(transacaoDTO.getDestino().getLogin()));
 		usuarioService.validar(transacao.getDestino(), transacao.getDestino());
 		return transacaoRepository.save(transacao);
 	}
