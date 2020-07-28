@@ -1,4 +1,4 @@
-package br.com.diopicpayclone.enums;
+package br.com.dio.picpayclone.enums;
 
 public enum BandeiraCartao {
 

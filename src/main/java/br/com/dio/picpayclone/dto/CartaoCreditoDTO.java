@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.sun.istack.NotNull;
 
-import br.com.diopicpayclone.enums.BandeiraCartao;
+import br.com.dio.picpayclone.enums.BandeiraCartao;
 import lombok.Data;
 
 @Data
