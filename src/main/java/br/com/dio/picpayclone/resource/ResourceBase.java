@@ -49,4 +49,5 @@ public abstract class ResourceBase<T> {
 	protected ResponseEntity<Page<T>> responderListaDeItensPaginada(Page<T> itens) {
 		return ResponseEntity.status(HttpStatus.OK).body(itens);
 	}
+
 }

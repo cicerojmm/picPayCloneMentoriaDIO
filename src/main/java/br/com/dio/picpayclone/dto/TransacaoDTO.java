@@ -30,7 +30,7 @@ public class TransacaoDTO {
 	private Double valor;
 
 	private CartaoCreditoDTO cartaoCredito;
-	
+
 	private Boolean isCartaoCredito = false;
 
 }

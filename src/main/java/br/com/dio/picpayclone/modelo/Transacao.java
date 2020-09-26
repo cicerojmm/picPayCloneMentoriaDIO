@@ -1,5 +1,6 @@
 package br.com.dio.picpayclone.modelo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
@@ -23,7 +24,10 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "TRANSACOES")
-public class Transacao extends EntidadeBase {
+public class Transacao extends EntidadeBase implements Serializable {
+
+
+	private static final long serialVersionUID = 1L;
 
 	@Column(name = "TR_CODIGO", nullable = false)
 	private String codigo;

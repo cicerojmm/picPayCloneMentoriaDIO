@@ -21,7 +21,7 @@ import io.swagger.annotations.Authorization;
 public interface IUsuarioResource {
 
 	@ApiOperation(value = "Consultar saldo de um usuário por login", nickname = "consultarSaldo", notes = "", response = UsuarioDTO.class, responseContainer = "object", authorizations = {
-			@Authorization(value = "basicAuth") }, tags = { "usuarios" })
+			@Authorization(value = "Authorization") }, tags = { "usuarios" })
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Saldo consultado com sucesso", response = UsuarioDTO.class, responseContainer = "object"),
 			@ApiResponse(code = 400, message = "Dados informados para a requisição estão inconsistentes", response = ErrorDTO.class, responseContainer = "object"),
